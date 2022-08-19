@@ -34,6 +34,8 @@
 #define SDRAM_APP_BUF		(EXT_SDRAM_ADDR + SDRAM_LCD_SIZE * SDRAM_LCD_LAYER)
 #define SDRAM_APP_SIZE		(EXT_SDRAM_SIZE - SDRAM_LCD_SIZE * SDRAM_LCD_LAYER)
 
+
+
 void bsp_InitExtSDRAM(void);
 uint32_t bsp_TestExtSDRAM1(void);
 uint32_t bsp_TestExtSDRAM2(void);

@@ -128,17 +128,18 @@ int main(void)
   LCD_ClrScr(CL_BLUE2);
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, 1);	/*开启背光*/
   /* 显示汉字 */
-//	LCD_DispStr(5, 3, "故人西辞黄鹤楼，烟花三月下扬州。", &tFont12);
-//	LCD_DispStr(5, 18, "孤帆远影碧空尽，唯见长江天际流。", &tFont12);
-//	LCD_DispStr(5, 38, "故人西辞黄鹤楼，烟花三月下扬州。", &tFont16);
-//	LCD_DispStr(5, 58, "孤帆远影碧空尽，唯见长江天际流。", &tFont16);
+	LCD_DispStr(5, 3, "故人西辞黄鹤楼，烟花三月下扬州。", &tFont12);
+	LCD_DispStr(5, 18, "孤帆远影碧空尽，唯见长江天际流。", &tFont12);
+	LCD_DispStr(5, 38, "故人西辞黄鹤楼，烟花三月下扬州。", &tFont16);
+	LCD_DispStr(5, 58, "孤帆远影碧空尽，唯见长江天际流。", &tFont16);
 
 	/* 绘制2D图形 */
-//	LCD_DrawLine(5, 120, 100, 220, CL_RED);
+	LCD_DrawLine(5, 120, 100, 220, CL_RED);
 
-//	LCD_DrawRect(120, 120, 100, 100, CL_RED);
-//	LCD_DrawCircle(280, 170, 50, CL_RED);
+	LCD_DrawRect(120, 120, 100, 100, CL_RED);
+	LCD_DrawCircle(280, 170, 50, CL_RED);
   	 LCDH7_PutPixel(330, 100, CL_BUTTON_GREY);
+  	uint16_t RGB = LCDH7_GetPixel(330,100);
 	LCD_Fill_Rect(340, 120, 100, 100, CL_BUTTON_GREY);
 
 
@@ -237,10 +238,10 @@ void MPU_Config(void)
   MPU_InitStruct.BaseAddress = 0x0;
   MPU_InitStruct.Size = MPU_REGION_SIZE_4GB;
   MPU_InitStruct.SubRegionDisable = 0x87;
-  MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
-  MPU_InitStruct.AccessPermission = MPU_REGION_NO_ACCESS;
+  MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL1;
+  MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
   MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_DISABLE;
-  MPU_InitStruct.IsShareable = MPU_ACCESS_SHAREABLE;
+  MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
   MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
   MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
 

@@ -37,6 +37,9 @@ extern DMA2D_HandleTypeDef hdma2d;
 uint32_t s_CurrentFrameBuffer;
 uint8_t s_CurrentLayer;
 
+__attribute__((section("._lcd_buf1"))) uint16_t LCD_BUFF1[1024*600];
+__attribute__((section("._lcd_buf2"))) uint16_t LCD_BUFF2[1024*600];
+
 /* º¯Êý */
 static void LCDH7_ConfigLTDC(void);
 
@@ -437,6 +440,8 @@ void LCDH7_PutPixel(uint16_t _usX, uint16_t _usY, uint16_t _usColor)
 
 	p = (uint16_t *)s_CurrentFrameBuffer;
 
+
+
 	if (g_LcdDirection == 0) /* ºáÆÁ */
 	{
 		index = (uint32_t)_usY * g_LcdWidth + _usX;
@@ -457,6 +462,7 @@ void LCDH7_PutPixel(uint16_t _usX, uint16_t _usY, uint16_t _usColor)
 	if (index < g_LcdHeight * g_LcdWidth)
 	{
 		p[index] = _usColor;
+//		*(uint16_t*)((uint32_t)s_CurrentFrameBuffer + index) = _usColor;
 	}
 }
 
@@ -478,6 +484,14 @@ uint16_t LCDH7_GetPixel(uint16_t _usX, uint16_t _usY)
 
 	p = (uint16_t *)s_CurrentFrameBuffer;
 
+	if (s_CurrentFrameBuffer == 0xc0000000)
+		{
+			p=LCD_BUFF1;
+		}
+		else
+		{
+			p=LCD_BUFF2;
+		}
 	if (g_LcdDirection == 0) /* ºáÆÁ */
 	{
 		index = (uint32_t)_usY * g_LcdWidth + _usX;

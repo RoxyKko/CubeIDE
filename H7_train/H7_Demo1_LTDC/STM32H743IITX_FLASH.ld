@@ -37,8 +37,8 @@ ENTRY(Reset_Handler)
 /* Highest address of the user mode stack */
 _estack = ORIGIN(RAM_D1) + LENGTH(RAM_D1);    /* end of RAM */
 /* Generate a link error if heap and stack don't fit into RAM */
-_Min_Heap_Size = 0x1000 ;      /* required amount of heap  */
-_Min_Stack_Size = 0x1200 ; /* required amount of stack */
+_Min_Heap_Size = 0x200 ;      /* required amount of heap  */
+_Min_Stack_Size = 0x400 ; /* required amount of stack */
 
 /* Specify the memory areas */
 MEMORY
@@ -49,7 +49,10 @@ MEMORY
   RAM_D2 (xrw)   : ORIGIN = 0x30000000, LENGTH = 288K
   RAM_D3 (xrw)   : ORIGIN = 0x38000000, LENGTH = 64K
   ITCMRAM (xrw)  : ORIGIN = 0x00000000, LENGTH = 64K
-  SDRAM (xrw)    : ORIGIN = 0xC0000000, LENGTH = 32M
+  SDRAM    (xrw) : ORIGIN = 0xC0000000, LENGTH = 32M
+  LCD_BUF1 (xrw) : ORIGIN = 0xC0000000, LENGTH = 2M
+  LCD_BUF2 (xrw) : ORIGIN = 0xC0200000, LENGTH = 2M
+  APP_BUF  (xrw) : ORIGIN = 0xC0400000, LENGTH = 28M
 }
 
 /* Define output sections */
@@ -157,6 +160,24 @@ SECTIONS
     . = ALIGN(4);
     . = ALIGN(4);
   } >SDRAM
+  
+  ._lcd_buf1(NOLOAD) :
+  {
+    . = ALIGN(4);
+    . = ALIGN(4);
+  } >LCD_BUF1
+  
+  ._lcd_buf2(NOLOAD) :
+  {
+    . = ALIGN(4);
+    . = ALIGN(4);
+  } >LCD_BUF2
+  
+  ._app_buf(NOLOAD) :
+  {
+    . = ALIGN(4);
+    . = ALIGN(4);
+  } >APP_BUF
   /* User_heap_stack section, used to check that there is enough RAM left */
   ._user_heap_stack :
   {

@@ -26,7 +26,7 @@
 /* #define SDCLOCK_PERIOD                FMC_SDRAM_CLOCK_PERIOD_3 */
 
 #define SDRAM_TIMEOUT                    ((uint32_t)0xFFFF)
-#define REFRESH_COUNT                    ((uint32_t)677)    /* SDRAM自刷新计数 */  
+#define REFRESH_COUNT                    ((uint32_t)677)    /* SDRAM自刷新计数 */
 
 /* SDRAM的参数配置 */
 #define SDRAM_MODEREG_BURST_LENGTH_1             ((uint16_t)0x0000)
@@ -74,9 +74,9 @@ void bsp_InitExtSDRAM(void)
 	SDRAM_Timing.ExitSelfRefreshDelay = 8; /* 80ns, TXSR定义从发出自刷新命令到发出激活命令之间的延迟 */
 	SDRAM_Timing.SelfRefreshTime      = 6; /* 60ns, TRAS定义最短的自刷新周期 */
 	SDRAM_Timing.RowCycleDelay        = 6; /* 60ns, TRC定义刷新命令和激活命令之间的延迟 */
-	SDRAM_Timing.WriteRecoveryTime    = 2; /* 20ns, TWR定义在写命令和预充电命令之间的延迟 */
+	SDRAM_Timing.WriteRecoveryTime    = 3; /* 20ns, TWR定义在写命令和预充电命令之间的延迟 */
 	SDRAM_Timing.RPDelay              = 2; /* 20ns, TRP定义预充电命令与其它命令之间的延迟 */
-	SDRAM_Timing.RCDDelay             = 2; /* 20ns, TRCD定义激活命令与读/写命令之间的延迟 */
+	SDRAM_Timing.RCDDelay             = 3; /* 20ns, TRCD定义激活命令与读/写命令之间的延迟 */
 
 	hsdram.Init.SDBank             = FMC_SDRAM_BANK1;               /* 硬件设计上用的BANK1 */
 	hsdram.Init.ColumnBitsNumber   = FMC_SDRAM_COLUMN_BITS_NUM_9;   /* 9列 */
@@ -276,7 +276,7 @@ static void SDRAM_Initialization_Sequence(SDRAM_HandleTypeDef *hsdram, FMC_SDRAM
 
     /*##-6- 设置自刷新率 ####################################################*/
     /*
-        SDRAM refresh period / Number of rows）*SDRAM时钟速度 – 20
+        SDRAM refresh period / Number of rows）*SDRAM时钟速度 C 20
       = 64ms / 4096 *100MHz - 20
       = 1542.5 取值1543
     */
