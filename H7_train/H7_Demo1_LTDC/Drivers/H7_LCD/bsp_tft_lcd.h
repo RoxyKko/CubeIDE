@@ -393,12 +393,26 @@ uint8_t LCD_ButtonTouchRelease(BUTTON_T *_btn, uint16_t _usX, uint16_t _usY);
 /* 初始化按钮结构体成员。 */
 void LCD_InitButton(BUTTON_T *_btn, uint16_t _x, uint16_t _y, uint16_t _h, uint16_t _w, char *_pCaption, FONT_T *_pFont);
 
+/* 初始化字体结构体成员。 */
+void LCD_InitFonts(FONT_T *_pFont ,FONT_CODE_E _FontCode, uint16_t _fontCol, uint16_t _backCol, uint16_t _space);
+
+/*初始化icon结构体成员。*/
+void LCD_InitIcon(ICON_T *_pIcon, uint8_t _id, uint16_t _x, uint16_t _y, uint16_t _h, uint16_t _w, uint16_t *_pBmp, char _text);
+
+/*初始化窗口结构体成员。*/
+void LCD_InitWin(WIN_T *_pWin, uint8_t _id, uint16_t _x, uint16_t _y, uint16_t _h, uint16_t _w, uint16_t _col, FONT_T *_pFont ,char *_Cap);
+
+/*初始化标签结构体成员。*/
+void LCD_InitLabel(LABEL_T *_pLabel, uint8_t _id, uint16_t _x, uint16_t _y, uint16_t _h, uint16_t _w, uint16_t _maxLen, FONT_T *_pFont ,char *_Cap);
+
+/*初始化编辑框结构体成员。*/
+void LCD_InitEdit(EDIT_T *_pEdit, uint8_t _id, uint16_t _x, uint16_t _y, uint16_t _h, uint16_t _w, uint16_t _col, FONT_T *_pFont ,char *_Cap);
+
+/*控制背光*/
 void LCD_SetBackLight(uint8_t _bright);
+
+/*控制背光*/
 uint8_t LCD_GetBackLight(void);
-
-
-
-
 
 /* 下面3个变量，主要用于使程序同时支持不同的屏 */
 extern uint16_t g_LcdHeight;		/* 显示屏分辨率-高度 */

@@ -1524,4 +1524,123 @@ void LCD_InitButton(BUTTON_T *_btn, uint16_t _x, uint16_t _y, uint16_t _h, uint1
 	_btn->Focus = 0;
 }
 
+/*
+*********************************************************************************************************
+*	函 数 名: LCD_InitFonts
+*	功能说明: 初始化按钮结构体成员。
+*	形    参:   _pFont : 按钮字体
+*			  _fontCol: 字体颜色
+*			  _backCol： 背景颜色
+*			  _space：	文字间距
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void LCD_InitFonts(FONT_T *_pFont ,FONT_CODE_E _FontCode, uint16_t _fontCol, uint16_t _backCol, uint16_t _space)
+{
+	_pFont->FontCode = _FontCode;
+	_pFont->FrontColor = _fontCol;
+	_pFont->BackColor = _backCol;
+	_pFont->Space = _space;
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: LCD_InitIcon
+*	功能说明: 初始化icon结构体成员。
+*	形    参:  _id : 序号
+*			  _x, _y : 坐标
+*			  _h, _w : 高度和宽度
+*			  _pBmp : 指向图标图片数据
+*			  _ptext : 图标文本
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void LCD_InitIcon(ICON_T *_pIcon, uint8_t _id, uint16_t _x, uint16_t _y, uint16_t _h, uint16_t _w, uint16_t *_pBmp, char _text)
+{
+	_pIcon->id = _id;
+	_pIcon->Left = _x;
+	_pIcon->Top = _y;
+	_pIcon->Height = _h;
+	_pIcon->Width = _w;
+	_pIcon->pBmp = _pBmp;
+	*(_pIcon->Text) = _text;
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: LCD_InitWin
+*	功能说明: 初始化窗口结构体成员。
+*	形    参:  _id : 序号
+*			  _x, _y : 坐标
+*			  _h, _w : 高度和宽度
+*			  _col : 颜色
+*			  _pFont : 按钮字体
+*			  _Cap : 图标文本
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void LCD_InitWin(WIN_T *_pWin, uint8_t _id, uint16_t _x, uint16_t _y, uint16_t _h, uint16_t _w, uint16_t _col, FONT_T *_pFont ,char *_Cap)
+{
+	_pWin->id = _id;
+	_pWin->Left = _x;
+	_pWin->Top = _y;
+	_pWin->Height = _h;
+	_pWin->Width = _w;
+	_pWin->Color = _col;
+	_pWin->Font = _pFont;
+	_pWin->pCaption = _Cap;
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: LCD_InitLabel
+*	功能说明: 初始化标签结构体成员。
+*	形    参:  _id : 序号
+*			  _x, _y : 坐标
+*			  _h, _w : 高度和宽度
+*			  _maxLen : 字符串长度
+*			  _pFont : 按钮字体
+*			  _Cap : 图标文本
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void LCD_InitLabel(LABEL_T *_pLabel, uint8_t _id, uint16_t _x, uint16_t _y, uint16_t _h, uint16_t _w, uint16_t _maxLen, FONT_T *_pFont ,char *_Cap)
+{
+	_pLabel->id = _id;
+	_pLabel->Left = _x;
+	_pLabel->Top = _y;
+	_pLabel->Height = _h;
+	_pLabel->Width = _w;
+	_pLabel->MaxLen = _maxLen;
+	_pLabel->Font = _pFont;
+	_pLabel->pCaption = _Cap;
+}
+
+/*
+*********************************************************************************************************
+*	函 数 名: LCD_InitEdit
+*	功能说明: 初始化编辑框结构体成员。
+*	形    参:  _id : 序号
+*			  _x, _y : 坐标
+*			  _h, _w : 高度和宽度
+*			  _maxLen : 字符串长度
+*			  _pFont : 按钮字体
+*			  _Cap : 图标文本
+*			  _pText : 编辑内容
+*	返 回 值: 无
+*********************************************************************************************************
+*/
+void LCD_InitEdit(EDIT_T *_pEdit, uint8_t _id, uint16_t _x, uint16_t _y, uint16_t _h, uint16_t _w, uint16_t _col, FONT_T *_pFont ,char *_Cap)
+{
+	_pEdit->id = _id;
+	_pEdit->Left = _x;
+	_pEdit->Top = _y;
+	_pEdit->Height = _h;
+	_pEdit->Width = _w;
+	_pEdit->Color = _col;
+	_pEdit->Font = _pFont;
+	_pEdit->pCaption = _Cap;
+}
+
+
 /***************************** 安富莱电子 www.armfly.com (END OF FILE) *********************************/
