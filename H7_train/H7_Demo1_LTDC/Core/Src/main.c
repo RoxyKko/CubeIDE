@@ -60,6 +60,8 @@ static void MPU_Config(void);
 /* USER CODE BEGIN 0 */
 WIN_T window1;
 LABEL_T label1;
+EDIT_T edit1;
+BUTTON_T button1;
 const uint32_t _aclufei[128*128*4];
 /* USER CODE END 0 */
 
@@ -153,6 +155,14 @@ int main(void)
 
 	/*ªÊ÷∆bmpÕº*/
 	LCD_DrawBmp32(5,250,128,128,(uint8_t *)&_aclufei);
+
+	/*ªÊ÷∆∞¥≈•*/
+	LCD_InitButton(&button1, 300, 300, 120, 90, "∞¥≈•≤‚ ‘", &tFont12);
+	LCD_DrawButton(&button1);
+
+	/*±‡º≠øÚ≤‚ ‘*/
+	LCD_InitEdit(&edit1, 1, 170, 250, 100, 100, CL_BUTTON_GREY, &tFont12, "≤‚ ‘");
+	LCD_DrawEdit(&edit1);
 
   /* USER CODE END 2 */
 
