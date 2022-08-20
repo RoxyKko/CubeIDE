@@ -23,6 +23,7 @@
 #include "bsp_fmc_sdram.h"
 #include "bsp_tft_h7.h"
 #include "bsp_tft_lcd.h"
+#include "bsp_dma2d.h"
 
 
 #endif /* _BSP_H_ */
