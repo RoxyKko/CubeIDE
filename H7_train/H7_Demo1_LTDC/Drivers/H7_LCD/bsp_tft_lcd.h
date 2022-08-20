@@ -101,6 +101,11 @@ enum
 	CL_BOX_BORDER2	= RGB(255, 255,255),	/* 分组框阴影线颜色 */
 
 
+	/* Roxy的调色板 */
+
+
+
+	
 	CL_MASK			= 0x9999	/* 颜色掩码，用于文字背景透明 */
 };
 
@@ -155,11 +160,11 @@ typedef enum
 	FC_ST_12 = 0,		/* 宋体12x12点阵 （宽x高） */
 	FC_ST_16,			/* 宋体15x16点阵 （宽x高） */
 	FC_ST_24,			/* 宋体24x24点阵 （宽x高） -- 暂时未支持 */
-	FC_ST_32,			/* 宋体32x32点阵 （宽x高） -- 暂时未支持 */	
+	FC_ST_32,			/* 宋体32x32点阵 （宽x高） -- 暂时未支持 */
 	
 	FC_RA8875_16,		/* RA8875 内置字体 16点阵 */
 	FC_RA8875_24,		/* RA8875 内置字体 24点阵 */
-	FC_RA8875_32		/* RA8875 内置字体 32点阵 */	
+	FC_RA8875_32		/* RA8875 内置字体 32点阵 */
 }FONT_CODE_E;
 
 /* 字体属性结构, 用于LCD_DispStr() */
@@ -282,50 +287,118 @@ typedef struct
 #define BRIGHT_STEP		5
 
 /* 可供外部模块调用的函数 */
+/* 初始化LCD */
 void LCD_InitHard(void);
+
+/* 读取LCD驱动芯片的描述符号，用于显示 */
 void LCD_GetChipDescribe(char *_str);
+
+/* 读取LCD分辨率之高度 */
 uint16_t LCD_GetHeight(void);
+
+/* 读取LCD分辨率之宽度 */
 uint16_t LCD_GetWidth(void);
+
+/* 打开显示 */
 void LCD_DispOn(void);
+
+/* 关闭显示 */
 void LCD_DispOff(void);
+
+/* 根据输入的颜色值清屏 */
 void LCD_ClrScr(uint16_t _usColor);
+
+/* 在LCD指定坐标（左上角）显示一个字符串 */
 void LCD_DispStr(uint16_t _usX, uint16_t _usY, char *_ptr, FONT_T *_tFont);
+
+/* 读取字体的宽度（像素单位) */
+uint16_t LCD_GetFontWidth(FONT_T *_tFont);
+
+/* 读取字体的高度（像素单位) */
+uint16_t LCD_GetFontHeight(FONT_T *_tFont);
+
+/* 计算字符串宽度(像素单位) */
+uint16_t LCD_GetStrWidth(char *_ptr, FONT_T *_tFont);
+
+/* 在LCD指定坐标（左上角）显示一个字符串。 增强型函数。支持左\中\右对齐，支持定长清屏。 */
+void LCD_DispStrEx(uint16_t _usX, uint16_t _usY, char *_ptr, FONT_T *_tFont, uint16_t _Width,
+        uint8_t _Align);
+
+/* 画1个像素 */
 void LCD_PutPixel(uint16_t _usX, uint16_t _usY, uint16_t _usColor);
+
+/* 读取1个像素 */
 uint16_t LCD_GetPixel(uint16_t _usX, uint16_t _usY);
+
+/* 采用 Bresenham 算法，在2点间画一条直线。 */
 void LCD_DrawLine(uint16_t _usX1 , uint16_t _usY1 , uint16_t _usX2 , uint16_t _usY2 , uint16_t _usColor);
+
+/* 采用 Bresenham 算法，绘制一组点，并将这些点连接起来。可用于波形显示。 */
 void LCD_DrawPoints(uint16_t *x, uint16_t *y, uint16_t _usSize, uint16_t _usColor);
+
+/* 绘制水平放置的矩形。 */
 void LCD_DrawRect(uint16_t _usX, uint16_t _usY, uint16_t _usHeight, uint16_t _usWidth, uint16_t _usColor);
+
+/* 用一个颜色值填充一个矩形。【emWin 中有同名函数 LCD_FillRect，因此加了下划线区分】 */
+void LCD_Fill_Rect(uint16_t _usX, uint16_t _usY, uint16_t _usHeight, uint16_t _usWidth, uint16_t _usColor);
+
+/* 绘制一个圆，笔宽为1个像素 */
 void LCD_DrawCircle(uint16_t _usX, uint16_t _usY, uint16_t _usRadius, uint16_t _usColor);
+
+/* 在LCD上显示一个BMP位图，位图点阵扫描次序: 从左到右，从上到下 */
 void LCD_DrawBMP(uint16_t _usX, uint16_t _usY, uint16_t _usHeight, uint16_t _usWidth, uint16_t *_ptr);
+
+/* 在LCD上绘制一个窗口 */
+void LCD_DrawWin(WIN_T *_pWin);
+
+/* 在LCD上绘制一个图标，四角自动切为弧脚 */
+void LCD_DrawIcon(const ICON_T *_tIcon, FONT_T *_tFont, uint8_t _ucFocusMode);
+
+/* 对像素透明化 颜色混合 */
+uint16_t LCD_Blend565(uint16_t src, uint16_t dst, uint8_t alpha);
+
+/* 在LCD上绘制一个图标, 带有透明信息的位图(32位， RGBA). 图标下带文字 */
+void LCD_DrawIcon32(const ICON_T *_tIcon, FONT_T *_tFont, uint8_t _ucFocusMode);
+
+/* 在LCD上绘制一个32位的BMP图, 带有透明信息的位图(32位， RGBA) */
+void LCD_DrawBmp32(uint16_t _usX, uint16_t _usY, uint16_t _usHeight, uint16_t _usWidth, uint8_t *_pBmp);
+
+/* 绘制一个文本标签 */
+void LCD_DrawLabel(LABEL_T *_pLabel);
+
+/* 绘制一个检查框 */
+void LCD_DrawCheckBox(CHECK_T *_pCheckBox);
+
+/* 在LCD上绘制一个编辑框 */
+void LCD_DrawEdit(EDIT_T *_pEdit);
+
+/* 在LCD上绘制一个按钮 */
+void LCD_DrawButton(BUTTON_T *_pBtn);
+
+/* 在LCD上绘制一个分组框 */
+void LCD_DrawGroupBox(GROUP_T *_pBox);
+
+/* 绘制控件 */
+void LCD_DispControl(void *_pControl);
+
+/* 设置显示屏显示方向（横屏 竖屏） */
+void LCD_SetDirection(uint8_t _dir);
+
+/* 判断按钮是否被按下. 检查触摸坐标是否在按钮的范围之内。并重绘按钮。 */
+uint8_t LCD_ButtonTouchDown(BUTTON_T *_btn, uint16_t _usX, uint16_t _usY);
+
+/* 判断按钮是否被触摸释放. 并重绘按钮。在触摸释放事件中被调用。 */
+uint8_t LCD_ButtonTouchRelease(BUTTON_T *_btn, uint16_t _usX, uint16_t _usY);
+
+/* 初始化按钮结构体成员。 */
+void LCD_InitButton(BUTTON_T *_btn, uint16_t _x, uint16_t _y, uint16_t _h, uint16_t _w, char *_pCaption, FONT_T *_pFont);
+
 void LCD_SetBackLight(uint8_t _bright);
 uint8_t LCD_GetBackLight(void);
 
-void LCD_Fill_Rect(uint16_t _usX, uint16_t _usY, uint16_t _usHeight, uint16_t _usWidth, uint16_t _usColor);
 
-void LCD_DrawWin(WIN_T *_pWin);
-void LCD_DrawIcon(const ICON_T *_tIcon, FONT_T *_tFont, uint8_t _ucFocusMode);
-void LCD_DrawEdit(EDIT_T *_pEdit);
-void LCD_DrawButton(BUTTON_T *_pBtn);
-void LCD_DrawLabel(LABEL_T *_pLabel);
-void LCD_DrawCheckBox(CHECK_T *_pCheckBox);
-void LCD_DrawGroupBox(GROUP_T *_pBox);
 
-void LCD_DispControl(void *_pControl);
 
-void LCD_DrawIcon32(const ICON_T *_tIcon, FONT_T *_tFont, uint8_t _ucFocusMode);
-void LCD_DrawBmp32(uint16_t _usX, uint16_t _usY, uint16_t _usHeight, uint16_t _usWidth, uint8_t *_pBmp);
-
-uint16_t LCD_GetFontWidth(FONT_T *_tFont);
-uint16_t LCD_GetFontHeight(FONT_T *_tFont);
-uint16_t LCD_GetStrWidth(char *_ptr, FONT_T *_tFont);
-void LCD_DispStrEx(uint16_t _usX, uint16_t _usY, char *_ptr, FONT_T *_tFont, uint16_t _Width,
-	uint8_t _Align);
-
-void LCD_SetDirection(uint8_t _dir);
-
-uint8_t LCD_ButtonTouchDown(BUTTON_T *_btn, uint16_t _usX, uint16_t _usY);
-uint8_t LCD_ButtonTouchRelease(BUTTON_T *_btn, uint16_t _usX, uint16_t _usY);
-void LCD_InitButton(BUTTON_T *_btn, uint16_t _x, uint16_t _y, uint16_t _h, uint16_t _w, char *_pCaption, FONT_T *_pFont);
 
 /* 下面3个变量，主要用于使程序同时支持不同的屏 */
 extern uint16_t g_LcdHeight;		/* 显示屏分辨率-高度 */

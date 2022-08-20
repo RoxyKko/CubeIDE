@@ -70,7 +70,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
   FONT_T tFont12;			/* 定义一个字体结构体变量，用于设置字体参数 */
   FONT_T tFont16;			/* 定义一个字体结构体变量，用于设置字体参数 */
-  uint8_t buf[100], count = 0;
+
 
   /* 设置字体参数 */
 
@@ -139,7 +139,6 @@ int main(void)
 	LCD_DrawRect(120, 120, 100, 100, CL_RED);
 	LCD_DrawCircle(280, 170, 50, CL_RED);
   	 LCDH7_PutPixel(330, 100, CL_BUTTON_GREY);
-  	uint16_t RGB = LCDH7_GetPixel(330,100);
 	LCD_Fill_Rect(340, 120, 100, 100, CL_BUTTON_GREY);
 
 
