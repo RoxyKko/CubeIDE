@@ -1,0 +1,9 @@
+../Drivers/AD9528/ad9528.c:6:13:delay_us	24	static
+../Drivers/AD9528/ad9528.c:12:13:delay_ms	16	static
+../Drivers/AD9528/ad9528.c:19:13:spi_write_and_read	32	static
+../Drivers/AD9528/ad9528.c:40:19:AD9528_spiWriteByte	24	static
+../Drivers/AD9528/ad9528.c:58:19:AD9528_spiReadByte	24	static
+../Drivers/AD9528/ad9528.c:78:19:AD9528_resetDevice	8	static
+../Drivers/AD9528/ad9528.c:91:19:AD9528_setSpiSettings	24	static
+../Drivers/AD9528/ad9528.c:114:19:AD9528_Test	16	static
+../Drivers/AD9528/ad9528.c:137:19:AD9528_initialize	16	static
