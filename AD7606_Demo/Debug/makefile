@@ -61,8 +61,8 @@ all: main-build
 main-build: AD7606_Demo.elf secondary-outputs
 
 # Tool invocations
-AD7606_Demo.elf AD7606_Demo.map: $(OBJS) $(USER_OBJS) D:\allProject\stm32_Project\AD7606_Demo\STM32F407ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "AD7606_Demo.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\allProject\stm32_Project\AD7606_Demo\STM32F407ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="AD7606_Demo.map" -Wl,--gc-sections -static -L"D:\allProject\stm32_Project\AD7606_Demo/Drivers/DSP" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+AD7606_Demo.elf AD7606_Demo.map: $(OBJS) $(USER_OBJS) D:\CubeIDE2\AD7606_Demo\STM32F407ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "AD7606_Demo.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\CubeIDE2\AD7606_Demo\STM32F407ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="AD7606_Demo.map" -Wl,--gc-sections -static -L"D:\CubeIDE2\AD7606_Demo/Drivers/DSP" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

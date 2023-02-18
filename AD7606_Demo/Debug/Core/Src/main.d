@@ -29,8 +29,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/gpio.h \
- ../Core/Inc/fsmc.h \
- D:/allProject/stm32_Project/AD7606_Demo/Drivers/DSP/arm_math.h
+ ../Core/Inc/fsmc.h D:/CubeIDE2/AD7606_Demo/Drivers/DSP/arm_math.h \
+ D:/CubeIDE2/AD7606_Demo/Drivers/ad7606/ad7606.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -65,4 +65,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/main.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/fsmc.h:
-D:/allProject/stm32_Project/AD7606_Demo/Drivers/DSP/arm_math.h:
+D:/CubeIDE2/AD7606_Demo/Drivers/DSP/arm_math.h:
+D:/CubeIDE2/AD7606_Demo/Drivers/ad7606/ad7606.h:

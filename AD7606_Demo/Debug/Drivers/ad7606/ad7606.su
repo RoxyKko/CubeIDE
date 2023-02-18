@@ -1,2 +1,9 @@
-../Drivers/ad7606/ad7606.c:24:6:AD7606_RESET	16	static,ignoring_inline_asm
-../Drivers/ad7606/ad7606.c:58:6:AD7606_SetOS	16	static
+../Drivers/ad7606/ad7606.c:53:6:AD7606_Init	8	static
+../Drivers/ad7606/ad7606.c:70:6:AD7606_RESET	16	static,ignoring_inline_asm
+../Drivers/ad7606/ad7606.c:104:6:AD7606_SetOS	16	static
+../Drivers/ad7606/ad7606.c:158:6:AD7606_ReadNowAdc	4	static
+../Drivers/ad7606/ad7606.c:187:9:AD7606_HasNewData	4	static
+../Drivers/ad7606/ad7606.c:205:9:AD7606_FifoFull	4	static
+../Drivers/ad7606/ad7606.c:219:9:AD7606_ReadFifo	24	static,ignoring_inline_asm
+../Drivers/ad7606/ad7606.c:251:6:AD7606_StartRecord	4	static
+../Drivers/ad7606/ad7606.c:268:6:AD7606_ISR	8	static
