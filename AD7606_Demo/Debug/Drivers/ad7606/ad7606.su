@@ -1,0 +1,2 @@
+../Drivers/ad7606/ad7606.c:24:6:AD7606_RESET	16	static,ignoring_inline_asm
+../Drivers/ad7606/ad7606.c:58:6:AD7606_SetOS	16	static
