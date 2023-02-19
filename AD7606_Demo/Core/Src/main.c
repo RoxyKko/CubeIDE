@@ -179,7 +179,16 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 //  if(GPIO_Pin == BUSY_Pin)
   {
-	  AD7606_ISR();
+//	  AD7606_ISR();
+
+	  RawData[0]=AD7606_RESULT();
+	  RawData[1]=AD7606_RESULT();
+	  RawData[2]=AD7606_RESULT();
+	  RawData[3]=AD7606_RESULT();
+	  RawData[4]=AD7606_RESULT();
+	  RawData[5]=AD7606_RESULT();
+	  RawData[6]=AD7606_RESULT();
+	  RawData[7]=AD7606_RESULT();
   }
 }
 
